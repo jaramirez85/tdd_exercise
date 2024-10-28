@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pre-commit-local-custom
+        name: pre-commit-local-custom
+        description: run sh
+        entry: pre-commit-local-custom-hook.sh
+        stages: [ commit ]
+        language: script
