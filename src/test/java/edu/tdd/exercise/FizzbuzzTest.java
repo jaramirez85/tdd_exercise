@@ -73,4 +73,14 @@ public class FizzbuzzTest {
 
     }
 
+    @Test
+    public void givenFiveThenReturnsListWitFizzAndBuzz(){
+
+        FizzbuzzGenerator generator = new FizzbuzzGenerator();
+        List<String> result = generator.generate(5);
+        assertThat(result).isEqualTo(List.of("1", "2", "Fizz", "4", "Buzz"));
+
+    }
+
+
 }

@@ -15,7 +15,11 @@ public class FizzbuzzGenerator {
             if(i % 3 == 0){
                 result.add("Fizz");
             }else {
-                result.add(String.valueOf(i));
+                if(i % 5 == 0){
+                    result.add("Buzz");
+                }else{
+                    result.add(String.valueOf(i));
+                }
             }
         }
         return result;
