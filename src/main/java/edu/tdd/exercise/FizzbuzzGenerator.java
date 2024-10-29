@@ -1,8 +1,9 @@
 package edu.tdd.exercise;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class FizzbuzzGenerator {
 
@@ -11,19 +12,18 @@ public class FizzbuzzGenerator {
             return Collections.emptyList();
         }
 
-        List<String> result = new ArrayList<>();
-        for (int i = 1; i <= number; i++) {
-            if (i % 3 == 0 && i % 5 == 0) {
-                result.add("FizzBuzz");
-            } else if (i % 3 == 0) {
-                result.add("Fizz");
-            } else if (i % 5 == 0) {
-                result.add("Buzz");
-            } else {
-                result.add(String.valueOf(i));
-            }
-        }
-        return result;
+        return IntStream.range(1, number + 1)
+                .mapToObj(i -> {
+                    if (i % 3 == 0 && i % 5 == 0) {
+                        return "FizzBuzz";
+                    } else if (i % 3 == 0) {
+                        return "Fizz";
+                    } else if (i % 5 == 0) {
+                        return "Buzz";
+                    } else {
+                        return String.valueOf(i);
+                    }
+                }).collect(Collectors.toList());
     }
 
 }
