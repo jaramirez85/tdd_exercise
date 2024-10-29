@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-///# Ejercicio FizzBuzz
+/// # Ejercicio FizzBuzz
 ///
 /// El ejercicio FizzBuzz es un clásico en entrevistas técnicas y consiste en lo siguiente:
 ///
@@ -47,55 +47,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 /// FizzBuzz
 /// 16
 /// ...
-/// ```
+///```
 public class FizzbuzzTest {
-
-    @Test
-    public void givenZeroThenReturnsEmptyList(){
-
-        FizzbuzzGenerator generator = new FizzbuzzGenerator();
-        List<String> result = generator.generate(0);
-        assertThat(result).isEqualTo(Collections.emptyList());
-
-    }
-
-    @Test
-    public void givenOneThenReturnsListWithoutFizz(){
-
-        FizzbuzzGenerator generator = new FizzbuzzGenerator();
-        List<String> result = generator.generate(1);
-        assertThat(result).isEqualTo(List.of("1"));
-
-    }
-
-    @Test
-    public void givenThreeThenReturnsListWitFizz(){
-
-        FizzbuzzGenerator generator = new FizzbuzzGenerator();
-        List<String> result = generator.generate(3);
-        assertThat(result).isEqualTo(List.of("1", "2", "Fizz"));
-
-    }
-
-    @Test
-    public void givenFiveThenReturnsListWitFizzAndBuzz(){
-
-        FizzbuzzGenerator generator = new FizzbuzzGenerator();
-        List<String> result = generator.generate(5);
-        assertThat(result).isEqualTo(List.of("1", "2", "Fizz", "4", "Buzz"));
-
-    }
 
     @ParameterizedTest
     @MethodSource("generateTestData")
-    public void givenANumberThenReturnsListWithFizzBuzz(int number, List<String> expected){
+    public void givenANumberThenReturnsListWithFizzBuzz(int number, List<String> expected) {
         FizzbuzzGenerator generator = new FizzbuzzGenerator();
         List<String> result = generator.generate(number);
         assertThat(result).isEqualTo(expected);
     }
 
-    public static Stream<Arguments> generateTestData(){
+    public static Stream<Arguments> generateTestData() {
         return Stream.of(
+                Arguments.of(0, Collections.emptyList()),
+                Arguments.of(1, List.of("1")),
+                Arguments.of(3, List.of("1", "2", "Fizz")),
+                Arguments.of(5, List.of("1", "2", "Fizz", "4", "Buzz")),
                 Arguments.of(15, List.of("1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"))
         );
 
