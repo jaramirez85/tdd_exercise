@@ -1,7 +1,6 @@
 package edu.tdd.exercise;
 
-import org.assertj.core.util.Lists;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -50,16 +49,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 ///```
 public class FizzbuzzTest {
 
-    @ParameterizedTest
+    private FizzbuzzGenerator generator;
+
+    @BeforeEach
+    public void init(){
+        generator = new FizzbuzzGenerator();
+    }
+
+    @ParameterizedTest(name = "give ''{0}'' then should return {1}")
     @MethodSource("generateTestData")
     public void givenANumberThenReturnsListWithFizzBuzz(int number, List<String> expected) {
-        FizzbuzzGenerator generator = new FizzbuzzGenerator();
         List<String> result = generator.generate(number);
         assertThat(result).isEqualTo(expected);
     }
 
     public static Stream<Arguments> generateTestData() {
         return Stream.of(
+                Arguments.of(-1, Collections.emptyList()),
                 Arguments.of(0, Collections.emptyList()),
                 Arguments.of(1, List.of("1")),
                 Arguments.of(3, List.of("1", "2", "Fizz")),
