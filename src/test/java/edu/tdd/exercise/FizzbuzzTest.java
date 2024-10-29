@@ -55,4 +55,13 @@ public class FizzbuzzTest {
 
     }
 
+    @Test
+    public void givenOneThenReturnsListWithoutFizz(){
+
+        FizzbuzzGenerator generator = new FizzbuzzGenerator();
+        List<String> result = generator.generate(1);
+        assertThat(result).isEqualTo(List.of("1"));
+
+    }
+
 }
