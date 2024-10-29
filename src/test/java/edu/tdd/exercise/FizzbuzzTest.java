@@ -2,9 +2,13 @@ package edu.tdd.exercise;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -82,14 +86,19 @@ public class FizzbuzzTest {
 
     }
 
-    @Test
-    public void givenFifteenThenReturnsListWitFizzBuzz(){
-
+    @ParameterizedTest
+    @MethodSource("generateTestData")
+    public void givenANumberThenReturnsListWithFizzBuzz(int number, List<String> expected){
         FizzbuzzGenerator generator = new FizzbuzzGenerator();
-        List<String> result = generator.generate(15);
-        assertThat(result).isEqualTo(List.of("1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"));
-
+        List<String> result = generator.generate(number);
+        assertThat(result).isEqualTo(expected);
     }
 
+    public static Stream<Arguments> generateTestData(){
+        return Stream.of(
+                Arguments.of(15, List.of("1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"))
+        );
+
+    }
 
 }
