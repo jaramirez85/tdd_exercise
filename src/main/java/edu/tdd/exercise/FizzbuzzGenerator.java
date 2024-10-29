@@ -9,7 +9,16 @@ public class FizzbuzzGenerator {
         if(number <= 0){
             return new ArrayList<>();
         }
-        return List.of(String.valueOf(number));
+
+        List<String> result = new ArrayList<>();
+        for (int i = 1; i <= number; i++) {
+            if(i % 3 == 0){
+                result.add("Fizz");
+            }else {
+                result.add(String.valueOf(i));
+            }
+        }
+        return result;
     }
 
 }
